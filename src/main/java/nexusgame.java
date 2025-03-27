@@ -114,7 +114,6 @@ public class nexusgame {
     public static void main (String[] args){
         nexusgame game = new nexusgame();
         game.start();
-
         game.scanner.close();
     }
 

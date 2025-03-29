@@ -7,6 +7,7 @@ public class nexusgame {
     private Random random;
     private int playerVida;
     private int playerPoder;
+    private int    dimensaoSinergica;
     private String playerName;
 
 
@@ -14,6 +15,7 @@ public class nexusgame {
         scanner = new Scanner (System.in);
         random = new Random();
         playerPoder = 10;
+        dimensaoSinergica = 40;
         playerVida = 50;
 
 
@@ -79,34 +81,55 @@ public class nexusgame {
             int bonus = random.nextInt(10);
             playerPoder += bonus;
             System.out.println("Você encontrou um dispositivo que aumentou seu poder em " +bonus+ "!" );
-    }
+
+    } else if (random.nextInt(3) ==0) {
+            int bonus = random.nextInt(25);
+            dimensaoSinergica += bonus;
+            System.out.println("Você encontrou uma gema translúcida, com cores alternado entre azul e roxo, ele aumentou seu poder especial em " +bonus);
+        }
     }
     private void mostrarStatus() {
         System.out.println("\n--- STATUS DE JOGADOR ---");
         System.out.println("Nome: " +playerName);
         System.out.println("Vida: " +playerVida);
         System.out.println("Poder: " +playerPoder);
+        System.out.println(" Dimensão Sinérgica");
     }
     private void batalhar(){
         String[] inimigos = {
-          "  Parasitas Dimensionais ",
-                " Observador do Abismo ",
+                "Parasitas Dimensionais",
+                "Observador do Abismo",
                 "Eco Dimensional"
         };
-      String inimigo = inimigos[random.nextInt(inimigos.length)];
-        System.out.println("Você encontra um " +inimigo+"!");
+        String inimigo  = inimigos[random.nextInt(inimigos.length)];
+        int  vidaInimigo = random.nextInt(25) +20;
+        System.out.println("Você encontrou " +inimigo+ "!");
+        System.out.println("A vida do "+inimigo+ " é " +vidaInimigo);
 
-        int danoInimigo = random.nextInt(20);
-        int danoJogador = random.nextInt(playerPoder);
+        boolean emCombate =  true;
+        while  (emCombate){
+            System.out.println("\n--- Combate ---");
+            System.out.println("1. Atacar");
+            System.out.println("2. Tentar fugir ");
 
+            int escolha  = scanner.nextInt();
+            scanner.nextLine();
 
-        playerVida -= danoInimigo;
-        System.out.println("Você sofre " +danoInimigo+ " de dano!");
-        System.out.println("Você contra-ataca com " + danoJogador+ " de dano!");
+        }
 
-        if (playerVida <= 0){
-            System.out.println("GAME OVER! Você foi esquecido no vazio do universo.");
-            System.exit(0);
+        switch (escolha){
+
+            case 1:
+                int danoJogador = random.nextInt(playerPoder) +5;
+                vidaInimigo -= danoJogador;
+                System.out.println("Você ataca e causa"  +danoJogador+ " de dano!);
+                break;
+
+            case 2:
+                int poderEspecial = random.nextInt(poderEspecial) +6;
+                vidaInimigo -= poderEspecial;
+                System.out.println("Você cria ");
+
         }
 
     }
